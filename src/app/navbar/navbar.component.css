@@ -1,0 +1,43 @@
+.navigation {
+  margin: 0; 
+  
+  background: #248232;
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.navigation a {
+  text-decoration: none;
+  padding: 1em;
+  color: white;
+}
+
+.navigation a:hover {
+  background: #040F0F;
+}
+
+@media all and (max-width: 500px) {
+  .navigation {
+    -webkit-flex-flow: column wrap;
+    flex-flow: column wrap;
+    padding: 0;
+  }
+  
+  .navigation a { 
+    text-align: center; 
+    padding: 1px;
+    border-top: 1px solid rgba(255,255,255,0.3); 
+    border-bottom: 1px solid rgba(0,0,0,0.1); 
+  }
+  
+  .navigation li:last-of-type a {
+    border-bottom: none;
+  }
+}

@@ -1,0 +1,19 @@
+<h1> Articles related to {{ tag }}</h1>
+<ul class="flex-container">
+	<div *ngFor="let article of (feed | articles); let i = index" [attr.data-index]="i">
+		<div *ngFor="let category of (article.categories)">
+				<li *ngIf="category == tag" class="flex-item" routerLink="/details/{{ i }}">
+					<h2>{{ article.title }}</h2>
+					<h3>by {{ article.author }} {{ article.pubDate | date }} </h3>
+					<div class="content">
+						{{ (article.description | filterHtmlTags) }}
+					</div>
+					<ul class="flex-container-cat">
+						<a class="flex-item-cat" routerLink="/tag/{{ category }}" *ngFor="let category of article.categories | slice:0:5">
+							{{ category }}
+						</a>
+					</ul>
+				</li>
+		</div>
+	</div>
+</ul>

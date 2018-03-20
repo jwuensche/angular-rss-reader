@@ -1,0 +1,11 @@
+<div>
+	<h2>
+		{{ feed.items[id].title }}
+	</h2>
+	<h3>
+		by: {{ feed.items[id].author }}, {{ feed.items[id].pubDate | date }}
+	</h3>
+	<p>
+		{{ feed.items[id].content | striptext }}	
+	</p>
+</div>
