@@ -11,9 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { MessageService } from './message.service';
 import { FeedService } from './feed.service';
 import { ArticlesPipe } from './overview/articles.pipe';
-import { FilterHtmlTagsPipe } from './overview/filter-html-tags.pipe';
 import { StriptextPipe } from './striptext.pipe';
 import { TagComponent } from './tag/tag.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +22,9 @@ import { TagComponent } from './tag/tag.component';
     DetailsComponent,
     NavbarComponent,
     ArticlesPipe,
-    FilterHtmlTagsPipe,
     StriptextPipe,
-    TagComponent
+    TagComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

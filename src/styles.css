@@ -26,6 +26,24 @@ html * {
   display: -webkit-flex;
   display: flex;
 }
+
+.flex-container-interior {
+  width: 100%;
+  list-style: none;
+  flex-direction: row;
+  align-items: stretch;
+
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
 .flex-container-cat {
   padding: 5px;
   padding-left: 0;
@@ -55,24 +73,43 @@ html * {
   flex-basis: auto;
   color: white;
   text-decoration: none;
+  position: relative;
+  z-index: 100;
+}
+
+.flex-item-interior {
+  padding: 10px;
+  flex-grow: 1;
+  
+  flex-basis: auto;
+  color: white;
 }
 
 .flex-item {
   background: #2BA84A;
   padding: 10px;
   flex-grow: 1;
+  flex: auto;
   margin-top: 10px;
 
   box-shadow: 0 0 4px #2BA84A;
   
   flex-basis: auto;
   color: white;
+  position: relative;
+  z-index: 10;
 }
 .flex-item-cat:hover {
   filter: brightness(110%);
 }
 .flex-item:hover {
   filter: brightness(110%);
+}
+
+.article {
+  text-align: left;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 h1 {
@@ -102,6 +139,24 @@ h3 {
   margin-left: 5px;
 }
 
+.image-container {
+  text-align: left;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 0px;
+  display: block;
+}
+
 a {
   text-decoration: none;
+}
+
+img {
+	max-width: 200px;
+}
+
+@media all and (max-width: 500px){
+	img {
+		display: none;
+	}
 }

@@ -29,6 +29,7 @@ export interface Feed {
 @Injectable()
 export class FeedService {
 
+	//feedUrl = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.spaceflightnow.com%2Ffeed";
 	feedUrl = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.spaceflightnow.com%2Ffeed";
 
   constructor(

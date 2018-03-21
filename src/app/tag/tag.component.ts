@@ -11,10 +11,10 @@ import { Location } from '@angular/common';
 export class TagComponent implements OnInit {
 
 	feed: Feed;
-	tag: string;
+	cat: string;
 	
   constructor(
-  	public feedService: FeedService,
+  public feedService: FeedService,
 	private location: Location,
 	private route: ActivatedRoute
   	) { }
@@ -34,6 +34,6 @@ export class TagComponent implements OnInit {
   }
 
   getTag() {
-  	this.tag = this.route.snapshot.paramMap.get('tag');
+  	this.cat = this.route.snapshot.paramMap.get('tag');
   }
 }
