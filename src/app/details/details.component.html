@@ -1,15 +1,17 @@
-<div>
-	<h2>
-		{{ feed.items[id].title }}
-	</h2>
-	<h3>
-		by: {{ feed.items[id].author }}, {{ feed.items[id].pubDate | date }}
-	</h3>
-	<figure class="image-container">
-	  <img src="{{ feed.items[id].thumbnail }}">
-	  <figcaption>Placeholder</figcaption>
-	</figure>
-	<div class="article">
-		{{ feed.items[id].content | striptext }}	
+<div *ngIf="article">
+	<div class="article-container">
+		<h2>
+			{{ article.title }}
+		</h2>
+		<h3>
+			by: {{ article.author }}, {{ article.pubDate | date }}
+		</h3>
+		<figure class="image-container">
+		  <img src="{{ article.thumbnail }}">
+		  <figcaption>{{ article.figcaption }}</figcaption>
+		</figure>
+		<p class="article" *ngFor="let paragraph of article.content">
+			{{ paragraph }}			
+		</p>
 	</div>
 </div>

@@ -159,4 +159,8 @@ img {
 	img {
 		display: none;
 	}
+
+  figure {
+    display: none;
+  }
 }

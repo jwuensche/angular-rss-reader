@@ -21,6 +21,11 @@ img {
 	max-height: 100%;
 }
 
+.article-container {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
 figure {
 	padding-bottom: 20px;
 }
