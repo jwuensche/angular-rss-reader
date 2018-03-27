@@ -1,31 +1,50 @@
 h2 {
-	padding-left: 100px;
 	padding-top: 30px;
-	padding-right: 100px;
+	padding-left: 30px;
 	margin-left: 0px;
 }
 
 h3 {
 	font-weight: normal;
 	font-size: small;
-	padding-left: 100px;
+	padding-left: 30px;
 	margin-left: 0px;
 }
 
 p {
-	margin-top: 30px
+	margin-top: 10px
 }
 
 img {
 	max-width: 100%;
 	max-height: 100%;
+	box-shadow: 3px 1px 5px grey;
 }
 
 .article-container {
-	max-width: 1200px;
+	max-width: 1000px;
 	margin: 0 auto;
+	padding-bottom: 100px;
+	background: #FCFFFC;
+}
+
+.image-container {
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 0px;
+  display: block;
+}
+
+.content-container {
+	padding-right: 30px;
+	padding-left: 30px;
 }
 
 figure {
 	padding-bottom: 20px;
+}
+
+figcaption {
+	color: grey;
 }

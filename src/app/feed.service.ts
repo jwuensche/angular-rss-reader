@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Article } from './article';
+import * as Parser from 'rss-parser';
 
 export interface Feed {
 	status: string;
@@ -30,6 +32,7 @@ export interface Feed {
 export class FeedService {
 
 	feedUrl = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.spaceflightnow.com%2Ffeed";
+	cors_proxy = "https://cors-anywhere.herokuapp.com/"
 
   constructor(
   	private httpClient: HttpClient
@@ -39,11 +42,7 @@ export class FeedService {
   	return this.httpClient.get<Feed>(this.feedUrl);
   }
 
-/*  getFeedfromSource(url: string){
-  	var xmlString = this.httpClient.get(url);
-  	parser = new Parser();
-	let feed = parser.parseString(xmlString);
-	return feed;
-  }*/
-
+  getFeedfromSource() {
+  	return this.httpClient.get(this.cors_proxy + 'https://www.spaceflightnow.com/feed/', {responseType: 'text'});
+  }
 }

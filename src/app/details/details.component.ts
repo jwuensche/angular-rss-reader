@@ -2,24 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Feed, FeedService } from '../feed.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-
-export class Article {
-  content: string[];
-  title: string;
-  thumbnail: string;
-  figcaption: string;
-  author: string;
-  pubDate: string;
-
-/*put in some dummies to test functionality*/
-  constructor() {
-    this.content = [];
-    this.title = "empty";
-    this.thumbnail = "https://images.pexels.com/photos/23781/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
-    this.figcaption = "SpaceXs Dragon Craft, we're not sure what you were looking for.";
-
-  }
-}
+import { Article } from '../article'
 
 @Component({
   selector: 'app-details',
@@ -46,15 +29,8 @@ export class DetailsComponent implements OnInit {
   getFeed() {
   	this.feedService.getFeed().subscribe(
   		data => this.feed = {...data},
-      err => alert('Error' + err ),
+      err => console.log('Error' + err ),
       () => this.getArticle());
-  }
-
-  putDummy() {
-    this.article.content.push('test');
-    this.article.title = 'test';
-    this.article.thumbnail = 'test.png';
-    this.article.figcaption = 'something';
   }
 
   goBack() {
@@ -71,12 +47,17 @@ export class DetailsComponent implements OnInit {
     this.article.thumbnail = this.feed.items[this.id].thumbnail;
     this.article.author =this.feed.items[this.id].author;
     this.article.pubDate = this.feed.items[this.id].pubDate;
+
     /*Now figure description, a bit of pain but works for now*/
     var figcaption = /(figcaption)[^<]+(<)/;
-    this.article.figcaption = this.feed.items[this.id].content.match(figcaption);
-    var fc = this.article.figcaption[0].indexOf('>');
-    var fce = this.article.figcaption[0].indexOf('<',fc + 1);
-    this.article.figcaption = this.article.figcaption[0].substring(fc+1, fce);
+    
+    if(this.feed.items[this.id].content.match(figcaption) !== null){
+      this.article.figcaption = this.feed.items[this.id].content.match(figcaption)[0];
+      var fc = this.article.figcaption.indexOf('>');
+      var fce = this.article.figcaption.indexOf('<',fc + 1);
+      this.article.figcaption = this.article.figcaption.substring(fc+1, fce);  
+    }
+
     /*Following the actual content of chosen article*/
     var content = /(<p)[^<]+(<)/gi;
     var p_substr = this.feed.items[this.id].content.match(content);

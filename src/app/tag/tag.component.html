@@ -11,10 +11,10 @@
 							<div class="flex-item-interior">
 								
 								<h2>{{ article.title }}</h2>	
-								<h3>by {{ article.author }} {{ article.pubDate | date }} </h3>
+								<h3>by {{ article.creator }} {{ article.pubDate | date }} </h3>
 								
 								<div class="content">
-									{{ (article.description | striptext) }}
+									{{ (article.contentSnippet | striptext) }}
 								</div>
 
 								<ul class="flex-container-cat">
@@ -25,7 +25,7 @@
 
 							</div>
 							<div style="text-align: right;" class="flex-item-interior">
-								<img src="{{ article.thumbnail }}">
+								<img src="{{ images[i] }}">
 							</div>	
 						</ul>
 

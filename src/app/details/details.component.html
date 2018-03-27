@@ -10,7 +10,7 @@
 		  <img src="{{ article.thumbnail }}">
 		  <figcaption>{{ article.figcaption }}</figcaption>
 		</figure>
-		<p class="article" *ngFor="let paragraph of article.content">
+		<p class="content-container" *ngFor="let paragraph of article.content">
 			{{ paragraph }}			
 		</p>
 	</div>

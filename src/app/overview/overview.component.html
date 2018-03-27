@@ -9,9 +9,9 @@
 			<ul class="flex-container-interior">
 				<div class="flex-item-interior">
 					<h2>{{ article.title }}</h2>
-					<h3>by {{ article.author }} {{ article.pubDate | date }} </h3>
+					<h3>by {{ article.creator }} {{ article.pubDate | date }} </h3>
 					<div class="content">
-						{{ (article.description | striptext) }}
+						{{ (article.contentSnippet | striptext) }}
 					</div>
 					<ul class="flex-container-cat">
 						<a class="flex-item-cat" routerLink="/tag/{{ category }}" *ngFor="let category of article.categories | slice:0:5">
@@ -20,7 +20,7 @@
 					</ul>
 				</div>
 				<div style="text-align: right;" class="flex-item-interior">
-					<img src="{{ article.thumbnail }}">
+					<img src="{{ images[i] }}">
 				</div>
 			</ul>
 		</li>
