@@ -9,9 +9,9 @@
 			<ul class="flex-container-interior">
 				<div class="flex-item-interior">
 					<h2>{{ article.title }}</h2>
-					<h3>by {{ article.creator }} {{ article.pubDate | date }} </h3>
+					<h3>by {{ article.author.name }}, {{ article.published | date }} </h3>
 					<div class="content">
-						{{ (article.contentSnippet | striptext) }}
+						{{ (article.description | striptext) }}
 					</div>
 					<ul class="flex-container-cat">
 						<a class="flex-item-cat" routerLink="/tag/{{ category }}" *ngFor="let category of article.categories | slice:0:5">

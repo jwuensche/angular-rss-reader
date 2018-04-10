@@ -4,7 +4,7 @@ export class Article {
   thumbnail: string;
   figcaption: string;
   author: string;
-  pubDate: string;
+  published: string;
 
 /*put in some dummies to test functionality*/
   constructor() {

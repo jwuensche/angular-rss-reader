@@ -15,34 +15,40 @@ export interface Feed {
 	};
 	items: [{
 			title: string;
-			pubDate: string;
+			published: string;
 			link: string;
 			guid: string;
 			author: string;
 			thumbnail: string;
 			description: string;
 			content: string;
-			enclosure: string;
 			categories: [string];
 		}
 	]
 }
 
+export interface ArticleInterface {
+	Title: string;
+	Description: string;
+	Content: string;
+	Categories: [string];
+	PublishedParsed: string;
+	Author: {
+		Name: string;
+	}
+	Link: string;
+}
+
 @Injectable()
 export class FeedService {
-
-	feedUrl = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.spaceflightnow.com%2Ffeed";
-	cors_proxy = "https://cors-anywhere.herokuapp.com/"
-
   constructor(
   	private httpClient: HttpClient
   	) { }
 
   getFeed(){
-  	return this.httpClient.get<Feed>(this.feedUrl);
+	  return this.httpClient.get<Feed>("http://localhost:8000/feed");
   }
-
-  getFeedfromSource() {
-  	return this.httpClient.get(this.cors_proxy + 'https://www.spaceflightnow.com/feed/', {responseType: 'text'});
+  getArticle(id){
+	  return this.httpClient.get<ArticleInterface>("http://localhost:8000/feed/"+id)
   }
 }

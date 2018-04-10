@@ -11,11 +11,11 @@ import * as Parser from 'rss-parser';
 })
 export class TagComponent implements OnInit {
 
-	feed;
+	feed: Feed;
   cat: string;
 	feedXml: string;
   images = [""];
-	
+
   constructor(
   public feedService: FeedService,
 	private location: Location,
@@ -28,8 +28,8 @@ export class TagComponent implements OnInit {
   }
 
   getFeed() {
-    this.feedService.getFeedfromSource().subscribe(
-      data => this.feedXml = data,
+    this.feedService.getFeed().subscribe(
+      data => this.feed = data,
       err => console.log('Error' + err),
       () => this.testFunc()
       )
@@ -44,23 +44,14 @@ export class TagComponent implements OnInit {
   }
 
   async testFunc() {
-    let parser = new Parser({
-      customFields: {
-        item: [
-          ['content:encoded', 'content_complete'],
-        ]
-      }
-    });
-
-    this.feed = await parser.parseString(this.feedXml);
     var imageExp = /<img[^>]+src="http([^">]+)/;
     var fc,fce : number;
     this.feed.items.forEach((item,index)=>{
-      if(item.content_complete.match(imageExp) == null){
+      if(item.content.match(imageExp) == null){
         this.images[index] = "";
       }
       else{
-        var quick = item.content_complete.match(imageExp)[0];
+        var quick = item.content.match(imageExp)[0];
         fc = quick.indexOf('src="');
         this.images[index] = quick.substring(fc+5);
         }

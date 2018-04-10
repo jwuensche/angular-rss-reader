@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Feed, FeedService } from '../feed.service';
+import { Feed, ArticleInterface, FeedService } from '../feed.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Article } from '../article'
+import { Article } from '../article';
 
 @Component({
   selector: 'app-details',
@@ -11,10 +11,10 @@ import { Article } from '../article'
 })
 export class DetailsComponent implements OnInit {
 
-	feed: Feed;
+	article_json: ArticleInterface;
 	id: number;
   article = new Article();
-	
+
   constructor(
   	public feedService: FeedService,
   	private location: Location,
@@ -22,13 +22,13 @@ export class DetailsComponent implements OnInit {
   	) { }
 
   ngOnInit() {
+    this.getId();
   	this.getFeed();
-  	this.getId();
   }
 
   getFeed() {
-  	this.feedService.getFeed().subscribe(
-  		data => this.feed = {...data},
+  	this.feedService.getArticle(this.id).subscribe(
+  		data => this.article_json = data,
       err => console.log('Error' + err ),
       () => this.getArticle());
   }
@@ -41,30 +41,38 @@ export class DetailsComponent implements OnInit {
   	this.id= +this.route.snapshot.paramMap.get('id');
   }
 
-  getArticle() {
+  async getArticle() {
     /*First catch everything already extracted*/
-    this.article.title = this.feed.items[this.id].title;
-    this.article.thumbnail = this.feed.items[this.id].thumbnail;
-    this.article.author =this.feed.items[this.id].author;
-    this.article.pubDate = this.feed.items[this.id].pubDate;
+    this.article.title = this.article_json.Title;
+    this.getImage();
+    this.article.author =this.article_json.Author.Name;
+    this.article.published = this.article_json.PublishedParsed;
 
     /*Now figure description, a bit of pain but works for now*/
     var figcaption = /(figcaption)[^<]+(<)/;
-    
-    if(this.feed.items[this.id].content.match(figcaption) !== null){
-      this.article.figcaption = this.feed.items[this.id].content.match(figcaption)[0];
+
+    if(this.article_json.Content.match(figcaption) !== null){
+      this.article.figcaption = this.article_json.Content.match(figcaption)[0];
       var fc = this.article.figcaption.indexOf('>');
       var fce = this.article.figcaption.indexOf('<',fc + 1);
-      this.article.figcaption = this.article.figcaption.substring(fc+1, fce);  
+      this.article.figcaption = this.article.figcaption.substring(fc+1, fce);
     }
 
     /*Following the actual content of chosen article*/
-    var content = /(<p)[^<]+(<)/gi;
-    var p_substr = this.feed.items[this.id].content.match(content);
+    var content = /(<p)[^<]+(<)/gui;
+    var p_substr = this.article_json.Content.match(content);
     p_substr.forEach((item,index)=>{
       fc = item.indexOf('>');
       fce = item.indexOf('<',fc+1);
       this.article.content[index] = item.substring(fc+1,fce);
     });
+  }
+
+  getImage() {
+    var imageExp = /<img[^>]+src="http([^">]+)/;
+    var fc: number;
+    var quick = this.article_json.Content.match(imageExp);
+    fc = quick[0].indexOf('src="');
+    this.article.thumbnail = quick[0].substring(fc+5);
   }
 }
