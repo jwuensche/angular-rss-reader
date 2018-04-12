@@ -17,7 +17,7 @@ html * {
   align-items: stretch;
 
   box-sizing: border-box;
-  
+
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -34,7 +34,7 @@ html * {
   justify-content: space-between;
 
   box-sizing: border-box;
-  
+
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -49,7 +49,7 @@ html * {
   list-style: none;
   flex-direction: row;
   align-items: baseline;
-  
+
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -78,9 +78,10 @@ html * {
 .flex-item-interior {
   padding: 10px;
   flex-grow: 1;
-  
+
   flex-basis: auto;
   color: white;
+  text-align: right;
 }
 
 .flex-item {
@@ -91,7 +92,7 @@ html * {
   margin-top: 10px;
 
   box-shadow: 0 0 4px #2BA84A;
-  
+
   flex-basis: auto;
   color: white;
   position: relative;
@@ -102,6 +103,11 @@ html * {
 }
 .flex-item:hover {
   filter: brightness(110%);
+}
+
+.thumbnail {
+  max-height: 200px;
+  overflow: hidden;
 }
 
 h1 {
@@ -135,11 +141,7 @@ a {
   text-decoration: none;
 }
 
-img {
-	max-width: 200px;
-}
-
-@media all and (max-width: 500px){
+@media all and (max-width: 600px){
 	img {
 		display: none;
 	}

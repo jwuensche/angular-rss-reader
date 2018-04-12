@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Feed, FeedService } from '../feed.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import * as Parser from 'rss-parser';
 
 @Component({
   selector: 'app-tag',
@@ -46,12 +45,12 @@ export class TagComponent implements OnInit {
   async testFunc() {
     var imageExp = /<img[^>]+src="http([^">]+)/;
     var fc,fce : number;
-    this.feed.items.forEach((item,index)=>{
-      if(item.content.match(imageExp) == null){
+    this.feed.Items.forEach((item,index)=>{
+      if(item.Content.match(imageExp) == null){
         this.images[index] = "";
       }
       else{
-        var quick = item.content.match(imageExp)[0];
+        var quick = item.Content.match(imageExp)[0];
         fc = quick.indexOf('src="');
         this.images[index] = quick.substring(fc+5);
         }

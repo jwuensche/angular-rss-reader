@@ -11,6 +11,6 @@ export class ArticlesPipe implements PipeTransform {
   	if (feed == null){
   		return null;
   	}
-  	return feed.items;
+  	return feed.Items;
   }
 }

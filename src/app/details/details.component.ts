@@ -48,24 +48,21 @@ export class DetailsComponent implements OnInit {
     this.article.author =this.article_json.Author.Name;
     this.article.published = this.article_json.PublishedParsed;
 
-    /*Now figure description, a bit of pain but works for now*/
-    var figcaption = /(figcaption)[^<]+(<)/;
 
-    if(this.article_json.Content.match(figcaption) !== null){
-      this.article.figcaption = this.article_json.Content.match(figcaption)[0];
-      var fc = this.article.figcaption.indexOf('>');
-      var fce = this.article.figcaption.indexOf('<',fc + 1);
-      this.article.figcaption = this.article.figcaption.substring(fc+1, fce);
-    }
+    /*Creating a wrapper around catched string to get access to js DOM methods*/
+    let wrapper= document.createElement('div');
+    wrapper.innerHTML= this.article_json.Content;
+
+    /*Get Main image description by using wrapper*/
+    var element = wrapper.getElementsByTagName('figcaption');
+    var text = element[0].innerText || element[0].textContent;
+    this.article.figcaption = text;
 
     /*Following the actual content of chosen article*/
-    var content = /(<p)[^<]+(<)/gui;
-    var p_substr = this.article_json.Content.match(content);
-    p_substr.forEach((item,index)=>{
-      fc = item.indexOf('>');
-      fce = item.indexOf('<',fc+1);
-      this.article.content[index] = item.substring(fc+1,fce);
-    });
+    let p_substr = wrapper.getElementsByTagName('p');
+    for (var i = 0; i < p_substr.length; i++) {
+      this.article.content.push(p_substr[i].textContent);
+    }
   }
 
   getImage() {

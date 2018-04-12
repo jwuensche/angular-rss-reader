@@ -4,25 +4,23 @@ import { Article } from './article';
 import * as Parser from 'rss-parser';
 
 export interface Feed {
-	status: string;
-	feed: {
-		url: string;
-		title: string;
-		link: string;
-		author: string;
-		description: string;
-		image: string;
-	};
-	items: [{
-			title: string;
-			published: string;
-			link: string;
-			guid: string;
-			author: string;
-			thumbnail: string;
-			description: string;
-			content: string;
-			categories: [string];
+  Url: string;
+  Title: string;
+  Link: string;
+  Author: string;
+  Description: string;
+  Image: string;
+	Items: [{
+			Title: string;
+			Published: string;
+			Link: string;
+			Guid: string;
+			Author: {
+			  Name: string;
+      }
+			Description: string;
+			Content: string;
+			Categories: [string];
 		}
 	]
 }

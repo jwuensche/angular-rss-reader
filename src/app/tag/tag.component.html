@@ -3,30 +3,32 @@
 	<ul class="flex-container">
 
 		<div *ngFor="let article of (feed | articles); let i = index" [attr.data-index]="i">
-			<div *ngFor="let category of (article.categories)">
+			<div *ngFor="let category of (article.Categories)">
 
 					<li *ngIf="category == cat" class="flex-item" routerLink="/details/{{ i }}">
 
 						<ul class="flex-container-interior">
 							<div class="flex-item-interior">
-								
-								<h2>{{ article.title }}</h2>	
-								<h3>by {{ article.creator }} {{ article.pubDate | date }} </h3>
-								
+
+								<h2>{{ article.Title }}</h2>
+								<h3>by {{ article.Author.Name }} {{ article.PublishedParsed | date }} </h3>
+
 								<div class="content">
-									{{ (article.contentSnippet | striptext) }}
+									{{ (article.Description | striptext) }}
 								</div>
 
 								<ul class="flex-container-cat">
-									<a class="flex-item-cat" routerLink="/tag/{{ category }}" *ngFor="let category of article.categories | slice:0:5">
+									<a class="flex-item-cat" routerLink="/tag/{{ category }}" *ngFor="let category of article.Categories | slice:0:5">
 										{{ category }}
 									</a>
 								</ul>
 
 							</div>
-							<div style="text-align: right;" class="flex-item-interior">
-								<img src="{{ images[i] }}">
-							</div>	
+							<div class="flex-item-interior">
+                <div class="thumbnail">
+                <img src="{{ images[i] }}">
+                </div>
+							</div>
 						</ul>
 
 					</li>
