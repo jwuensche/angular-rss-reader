@@ -1,17 +1,20 @@
 <div *ngIf="article">
-	<div class="article-container">
-		<h2>
+  <div class="article-container">
+    <h2>
 			{{ article.title }}
 		</h2>
-		<h3>
+    <h3>
 			by: {{ article.author }}, {{ article.published | date }}
 		</h3>
-		<figure class="image-container">
-		  <img src="{{ article.thumbnail }}">
-		  <figcaption>{{ article.figcaption }}</figcaption>
-		</figure>
-		<p class="content-container" *ngFor="let paragraph of article.content">
+    <figure class="image-container">
+      <img src="{{ article.thumbnail }}">
+      <figcaption>{{ article.figcaption }}</figcaption>
+    </figure>
+    <p class="content-container" *ngFor="let paragraph of article.content">
 			{{ paragraph }}
 		</p>
-	</div>
+  </div>
+</div>
+<div class="float" (click)="goBack()">
+  <div class="arrow-left my-float"></div>
 </div>
