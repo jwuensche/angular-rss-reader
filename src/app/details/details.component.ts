@@ -54,9 +54,11 @@ export class DetailsComponent implements OnInit {
     wrapper.innerHTML= this.article_json.Content;
 
     /*Get Main image description by using wrapper*/
-    var element = wrapper.getElementsByTagName('figcaption');
-    var text = element[0].innerText || element[0].textContent;
-    this.article.figcaption = text;
+    var captions = wrapper.getElementsByTagName('figcaption');
+
+    for (var i = 0; i < captions.length; i++) {
+      this.article.figcaption.push(captions[i].textContent);
+    }
 
     /*Following the actual content of chosen article*/
     let p_substr = wrapper.getElementsByTagName('p');
@@ -66,10 +68,15 @@ export class DetailsComponent implements OnInit {
   }
 
   getImage() {
-    var imageExp = /<img[^>]+src="http([^">]+)/;
-    var fc: number;
-    var quick = this.article_json.Content.match(imageExp);
-    fc = quick[0].indexOf('src="');
-    this.article.thumbnail = quick[0].substring(fc+5);
+    /*again creating a wrapper to use dom methods*/
+    let wrapper= document.createElement('div');
+    wrapper.innerHTML= this.article_json.Content;
+
+    /*get img src for every used img*/
+    let imagesrc = wrapper.getElementsByTagName('img');
+    for (var i = 0; i < imagesrc.length; i++) {
+      this.article.images.push(imagesrc[i].src);
+    }
+    this.article.thumbnail = this.article.images[0];
   }
 }

@@ -8,11 +8,17 @@
 		</h3>
     <figure class="image-container">
       <img src="{{ article.thumbnail }}">
-      <figcaption>{{ article.figcaption }}</figcaption>
+      <figcaption>{{ article.figcaption[0] }}</figcaption>
     </figure>
     <p class="content-container" *ngFor="let paragraph of article.content">
 			{{ paragraph }}
 		</p>
+    <figure class="image-container" *ngFor="let image of article.images let i = index" [attr.data-index]="i">
+      <div class="gallery-element" *ngIf="i != 0">
+        <img src="{{ image }}">
+        <figcaption>{{ article.figcaption[i] }}</figcaption>
+      </div>
+    </figure>
   </div>
 </div>
 <div class="float" (click)="goBack()">

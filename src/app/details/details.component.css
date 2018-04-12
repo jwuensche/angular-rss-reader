@@ -63,8 +63,13 @@ img {
 }
 
 .content-container {
-	padding-right: 30px;
-	padding-left: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+.gallery-element {
+  text-align: center;
+  padding: 10px;
 }
 
 figure {
