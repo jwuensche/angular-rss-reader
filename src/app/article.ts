@@ -6,10 +6,10 @@ export class Article {
   author: string;
   published: string;
   images: string[];
+  teststuff: string;
 
   constructor() {
     this.content = [];
-    this.title = "";
     this.thumbnail = "";
     this.images = [];
     this.figcaption = [];

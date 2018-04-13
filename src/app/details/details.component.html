@@ -1,4 +1,4 @@
-<div *ngIf="article">
+<div *ngIf="article.title">
   <div class="article-container">
     <h2>
 			{{ article.title }}
@@ -20,6 +20,12 @@
       </div>
     </figure>
   </div>
+</div>
+<!-- Not sure if this works as intended, since title is always defined-->
+<div *ngIf="article.title == ''">
+  <h1 style="text-align: center">
+    Loading ...
+  </h1>
 </div>
 <div class="float" (click)="goBack()">
   <div class="arrow-left my-float"></div>

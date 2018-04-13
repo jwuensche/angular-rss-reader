@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Feed, ArticleInterface, FeedService } from '../feed.service';
+import { ArticleInterface, FeedService } from '../feed.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Article } from '../article';
@@ -22,6 +22,7 @@ export class DetailsComponent implements OnInit {
   	) { }
 
   ngOnInit() {
+    debugger;
     this.getId();
   	this.getFeed();
   }
@@ -55,7 +56,6 @@ export class DetailsComponent implements OnInit {
 
     /*Get Main image description by using wrapper*/
     var captions = wrapper.getElementsByTagName('figcaption');
-
     for (var i = 0; i < captions.length; i++) {
       this.article.figcaption.push(captions[i].textContent);
     }
