@@ -1,18 +1,41 @@
 .image-container {
   text-align: center;
-  color: grey;
+  color: white;
+}
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #ffffff;
+
+  margin-top: 95px;
+  margin-left: 5px;
+}
+
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #ffffff;
+
+  margin-top: 95px;
+  margin-left: 5px;
 }
 
 .gallery-item-a {
   grid-row-start: 1;
+  grid-column-start: 1;
   width: 20px;
   height: 200px;
   background-color: grey;
-  opacity: 0.7;
+  opacity: 0.3;
   justify-self: start;
 }
 
-.gallery-item-a:hover, .gallery-item-c:hover{
+.gallery-item-a:hover, .gallery-item-c:hover {
   cursor: pointer;
   width: 25px;
   height: 250px;
@@ -21,22 +44,50 @@
 
 .gallery-item-c {
   grid-row-start: 1;
+  grid-column-start: 3;
   width: 20px;
   height: 200px;
   background-color: grey;
-  opacity: 0.7;
+  opacity: 0.3;
   justify-self: end;
 }
 
 .gallery-item-b {
   grid-row-start: 1;
-  justify-self: center;
+  grid-column-start: 2;
 }
 
 .gallery-grid {
+  grid-template-columns: 25px auto 25px;
   display: grid;
   grid-column-gap: 20px;
   align-items: center;
   justify-content: space-between;
   max-width: 1000px;
+  height: 622px;
+  background:
+    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+    linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+  background-color: #131313;
+  background-size: 20px 20px;
+  box-shadow: inset 0px 0px 50px 30px rgba(0,0,0,0.6);
+}
+
+img {
+  max-width: 700px;
+  max-height: 500px;
+}
+
+@media all and (max-width: 600px){
+	img {
+		display: block;
+	}
+
+  figure {
+    display: block;
+  }
 }
