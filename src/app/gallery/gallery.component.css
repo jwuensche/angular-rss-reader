@@ -1,0 +1,42 @@
+.image-container {
+  text-align: center;
+  color: grey;
+}
+
+.gallery-item-a {
+  grid-row-start: 1;
+  width: 20px;
+  height: 200px;
+  background-color: grey;
+  opacity: 0.7;
+  justify-self: start;
+}
+
+.gallery-item-a:hover, .gallery-item-c:hover{
+  cursor: pointer;
+  width: 25px;
+  height: 250px;
+  opacity: 0.5;
+}
+
+.gallery-item-c {
+  grid-row-start: 1;
+  width: 20px;
+  height: 200px;
+  background-color: grey;
+  opacity: 0.7;
+  justify-self: end;
+}
+
+.gallery-item-b {
+  grid-row-start: 1;
+  justify-self: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-column-gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1000px;
+}

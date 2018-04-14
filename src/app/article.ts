@@ -5,8 +5,7 @@ export class Article {
   figcaption: string[];
   author: string;
   published: string;
-  images: string[];
-  teststuff: string;
+  images?: string[];
 
   constructor() {
     this.content = [];

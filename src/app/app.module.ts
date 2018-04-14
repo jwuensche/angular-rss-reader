@@ -14,6 +14,7 @@ import { ArticlesPipe } from './overview/articles.pipe';
 import { StriptextPipe } from './striptext.pipe';
 import { TagComponent } from './tag/tag.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { GalleryComponent } from './gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ArticlesPipe,
     StriptextPipe,
     TagComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,

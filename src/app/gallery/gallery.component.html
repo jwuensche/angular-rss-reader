@@ -1,0 +1,12 @@
+<div style="text-align: center" *ngIf="article.images.length != 0">
+  <div class="gallery-grid">
+    <div class="gallery-item-a" (click)="decrement()" *ngIf="article.images.length > 1">
+    </div>
+    <figure class="image-container gallery-item-b">
+      <img src="{{ article.images[current_image] }}">
+      <figcaption>{{ article.figcaption[current_image] }}</figcaption>
+    </figure>
+    <div class="gallery-item-c" (click)="increment()" *ngIf="article.images.length > 1">
+    </div>
+  </div>
+</div>

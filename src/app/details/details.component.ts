@@ -22,7 +22,6 @@ export class DetailsComponent implements OnInit {
   	) { }
 
   ngOnInit() {
-    debugger;
     this.getId();
   	this.getFeed();
   }
