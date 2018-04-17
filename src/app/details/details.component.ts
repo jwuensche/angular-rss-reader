@@ -14,6 +14,7 @@ export class DetailsComponent implements OnInit {
 	article_json: ArticleInterface;
 	id: number;
   article = new Article();
+  feed_name: string;
 
   constructor(
   	public feedService: FeedService,
@@ -23,11 +24,12 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
     this.getId();
+    this.getName();
   	this.getFeed();
   }
 
   getFeed() {
-  	this.feedService.getArticle(this.id).subscribe(
+  	this.feedService.getArticle(this.id,this.feed_name).subscribe(
   		data => this.article_json = data,
       err => console.log('Error' + err ),
       () => this.getArticle());
@@ -39,6 +41,10 @@ export class DetailsComponent implements OnInit {
 
   getId() {
   	this.id= +this.route.snapshot.paramMap.get('id');
+  }
+
+  getName() {
+    this.feed_name = this.route.snapshot.paramMap.get("name");
   }
 
   async getArticle() {

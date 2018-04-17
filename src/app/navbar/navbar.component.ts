@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FeedService, FeedList } from "../feed.service";
 
 @Component({
   selector: 'app-navbar',
@@ -7,8 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  feeds: FeedList;
+
+  constructor(
+    public feedService: FeedService
+  ) { }
 
   ngOnInit() {
+    this.getFeedList()
+  }
+
+  getFeedList() {
+    this.feedService.getFeedList().subscribe(
+      data => this.feeds = data
+    );
   }
 }

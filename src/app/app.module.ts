@@ -15,6 +15,7 @@ import { StriptextPipe } from './striptext.pipe';
 import { TagComponent } from './tag/tag.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { GalleryComponent } from './gallery/gallery.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { GalleryComponent } from './gallery/gallery.component';
     StriptextPipe,
     TagComponent,
     PageNotFoundComponent,
-    GalleryComponent
+    GalleryComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

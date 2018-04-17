@@ -15,6 +15,7 @@ export class GalleryComponent implements OnInit {
   article = new Article();
   article_json: ArticleInterface;
   current_image: number;
+  feed_name: string;
 
   constructor(
     public feedService: FeedService,
@@ -24,6 +25,7 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit() {
     this.getID();
+    this.getName();
     this.getArticle();
     this.current_image = 0;
   }
@@ -33,11 +35,15 @@ export class GalleryComponent implements OnInit {
   }
 
   getArticle() {
-    this.feedService.getArticle(this.id).subscribe(
+    this.feedService.getArticle(this.id, this.feed_name).subscribe(
       (data) => this.article_json = data,
       (err) => console.log("Error occurred during initialization of Gallery Component: "+ err),
       () => this.getImages()
     );
+  }
+
+  getName() {
+    this.feed_name = this.route.snapshot.paramMap.get("name");
   }
 
   getImages() {

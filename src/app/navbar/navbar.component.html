@@ -1,4 +1,4 @@
 	<ul class="navigation">
-	  <a routerLink="/overview">Overview</a>
-	  <a routerLink="/overview">Details</a>
+    <a routerLink="/overview/{{ item.Name }}" *ngFor="let item of feeds">{{ item.Name }}</a>
+    <a style="margin-left: auto" routerLink="/settings"><img style="height: 1em;" src="https://freeiconshop.com/wp-content/uploads/edd/settings-solid.png"></a>
 	</ul>

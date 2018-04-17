@@ -4,16 +4,16 @@
   		<h1>{{ feed.feed.title }}</h1>
 	</span> -->
 	<ul class="flex-container">
-		<li class="flex-item" routerLink="/details/{{ i }}" *ngFor="let article of (feed | articles); let i = index" [attr.data-index]="i">
+		<li class="flex-item" routerLink="/details/{{ feedName }}/{{ i }}" *ngFor="let article of (feed | articles); let i = index" [attr.data-index]="i">
 			<ul class="flex-container-interior">
 				<div class="flex-item-interior">
 					<h2>{{ article.Title }}</h2>
-					<h3>by {{ article.Author.Name }}, {{ article.PublishedParsed | date }} </h3>
+					<h3>by {{ article.Author.Name }} {{ article.PublishedParsed | date }} </h3>
 					<div class="content">
 						{{ (article.Description | striptext) }}
 					</div>
 					<ul class="flex-container-cat">
-						<a class="flex-item-cat" routerLink="/tag/{{ category }}" *ngFor="let category of article.Categories | slice:0:5">
+						<a class="flex-item-cat" routerLink="/tag/{{ feedName }}/{{ category }}" *ngFor="let category of article.Categories | slice:0:5">
 							{{ category }}
 						</a>
 					</ul>

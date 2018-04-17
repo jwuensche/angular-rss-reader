@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Feed, FeedService } from '../feed.service';
+import {ActivatedRoute} from "@angular/router";
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -11,35 +12,45 @@ export class OverviewComponent implements OnInit {
 
 	feed: Feed;
   images= [""];
+  feedName: string;
 
   constructor(
-  	public feedService: FeedService
-  	) { }
+  	public feedService: FeedService,
+    private route: ActivatedRoute
+  	) {
+    route.params.subscribe(val => {
+      this.getParameters();
+      this.getFeed();
+    });
+  }
 
   ngOnInit() {
+    this.getParameters();
     this.getFeed();
   }
 
   getFeed() {
-    this.feedService.getFeed().subscribe(
+    this.feedService.getFeed(this.feedName).subscribe(
       data => this.feed = data,
       err => console.log(err),
-      () => this.testFunc()
+      () => this.getImages()
       );
   }
 
-  async testFunc() {
-    var imageExp =  /<img[^>]+src="http([^">]+)/;
-    var fc,fce : number;
+  getParameters() {
+    this.feedName = this.route.snapshot.paramMap.get("name");
+  }
+
+  async getImages() {
+    this.images = [];
+    let wrapper = document.createElement("div")
     this.feed.Items.forEach((item,index)=>{
-      if(item.Content.match(imageExp) == null){
-        this.images[index] = "";
+      wrapper.innerHTML = item.Content;
+      try{
+      this.images[index] = wrapper.getElementsByTagName("img")[0].src;
+      } catch {
+        console.log("some error occurred")
       }
-      else{
-        var quick = item.Content.match(imageExp)[0];
-        fc = quick.indexOf('src="');
-        this.images[index] = quick.substring(fc+5);
-        }
-      });
+    });
   }
 }

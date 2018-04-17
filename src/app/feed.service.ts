@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Article } from './article';
-import * as Parser from 'rss-parser';
 
 export interface Feed {
   Url: string;
@@ -37,16 +35,24 @@ export interface ArticleInterface {
 	Link: string;
 }
 
+export interface FeedList {
+  Name: string;
+  URL: string;
+}
+
 @Injectable()
 export class FeedService {
   constructor(
   	private httpClient: HttpClient
   	) { }
 
-  getFeed(){
-	  return this.httpClient.get<Feed>("http://localhost:8000/feed");
+  getFeed(name: string){
+	  return this.httpClient.get<Feed>("http://localhost:8000/feed/" + name);
   }
-  getArticle(id){
-	  return this.httpClient.get<ArticleInterface>("http://localhost:8000/feed/"+id)
+  getArticle(id: number, name: string){
+	  return this.httpClient.get<ArticleInterface>("http://localhost:8000/feed/"+ name + "/" +id);
+  }
+  getFeedList(){
+    return this.httpClient.get<FeedList>("http://localhost:8000/feeds");
   }
 }

@@ -5,7 +5,7 @@
 		<div *ngFor="let article of (feed | articles); let i = index" [attr.data-index]="i">
 			<div *ngFor="let category of (article.Categories)">
 
-					<li *ngIf="category == cat" class="flex-item" routerLink="/details/{{ i }}">
+					<li *ngIf="category == cat" class="flex-item" routerLink="/details/{{ feedName }}/{{ i }}">
 
 						<ul class="flex-container-interior">
 							<div class="flex-item-interior">
@@ -18,7 +18,7 @@
 								</div>
 
 								<ul class="flex-container-cat">
-									<a class="flex-item-cat" routerLink="/tag/{{ category }}" *ngFor="let category of article.Categories | slice:0:5">
+									<a class="flex-item-cat" routerLink="/tag/{{ feedName }}/{{ category }}" *ngFor="let category of article.Categories | slice:0:5">
 										{{ category }}
 									</a>
 								</ul>

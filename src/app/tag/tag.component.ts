@@ -12,7 +12,7 @@ export class TagComponent implements OnInit {
 
 	feed: Feed;
   cat: string;
-	feedXml: string;
+  feedName: string;
   images = [""];
 
   constructor(
@@ -22,15 +22,16 @@ export class TagComponent implements OnInit {
   	) { }
 
   ngOnInit() {
-  	this.getFeed();
   	this.getTag();
+    this.getName();
+    this.getFeed();
   }
 
   getFeed() {
-    this.feedService.getFeed().subscribe(
+    this.feedService.getFeed(this.feedName).subscribe(
       data => this.feed = data,
       err => console.log('Error' + err),
-      () => this.testFunc()
+      () => this.getImages()
       )
   }
 
@@ -42,18 +43,20 @@ export class TagComponent implements OnInit {
   	this.cat = this.route.snapshot.paramMap.get('tag');
   }
 
-  async testFunc() {
-    var imageExp = /<img[^>]+src="http([^">]+)/;
-    var fc,fce : number;
+  getName() {
+    this.feedName = this.route.snapshot.paramMap.get("name");
+  }
+
+  async getImages() {
+    this.images = [];
+    let wrapper = document.createElement("div")
     this.feed.Items.forEach((item,index)=>{
-      if(item.Content.match(imageExp) == null){
-        this.images[index] = "";
+      wrapper.innerHTML = item.Content;
+      try{
+      this.images[index] = wrapper.getElementsByTagName("img")[0].src;
+      } catch {
+        console.log("some error occurred")
       }
-      else{
-        var quick = item.Content.match(imageExp)[0];
-        fc = quick.indexOf('src="');
-        this.images[index] = quick.substring(fc+5);
-        }
-      });
+    });
   }
 }
