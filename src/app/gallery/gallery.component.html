@@ -6,7 +6,8 @@
     </div>
     <figure class="image-container gallery-item-b">
       <img src="{{ article.images[current_image] }}">
-      <figcaption>{{ article.figcaption[current_image] }}</figcaption>
+      <!--This is dirty at the moment, This offset occurs because images contains only images occuring in the article itself-->
+      <figcaption>{{ article.figcaption[current_image +1] }}</figcaption>
     </figure>
     <div class="gallery-item-c" (click)="increment()" *ngIf="article.images.length > 1">
         <div class="arrow-right"></div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedService, FeedList } from "../feed.service";
+import { StorageService } from "../storage.service";
 
 @Component({
   selector: 'app-navbar',
@@ -9,13 +10,23 @@ import { FeedService, FeedList } from "../feed.service";
 export class NavbarComponent implements OnInit {
 
   feeds: FeedList;
+  feedName;
+  display;
 
   constructor(
-    public feedService: FeedService
-  ) { }
+    public feedService: FeedService,
+    public storageService: StorageService
+  ) {
+    this.storageService.getItem('currentSection').subscribe(
+      val => this.feedName = val
+    );
+    this.storageService.getItem('showNavbar').subscribe(
+      val => this.display = val
+    );
+  }
 
   ngOnInit() {
-    this.getFeedList()
+    this.getFeedList();
   }
 
   getFeedList() {

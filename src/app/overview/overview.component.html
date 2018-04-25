@@ -8,9 +8,10 @@
 			<ul class="flex-container-interior">
 				<div class="flex-item-interior">
 					<h2>{{ article.Title }}</h2>
-					<h3>by {{ article.Author.Name }} {{ article.PublishedParsed | date }} </h3>
+					<h3>by <fa name="user-o"></fa> {{ article.Author.Name }} <fa name="clock-o"></fa> {{ article.PublishedParsed | date }} </h3>
 					<div class="content">
-						{{ (article.Description | striptext) }}
+						{{ (article.Description | striptext) }}<br><br>
+            <fa name="link"></fa>  <a href="{{ article.Link }}">Visit the page</a>
 					</div>
 					<ul class="flex-container-cat">
 						<a class="flex-item-cat" routerLink="/tag/{{ feedName }}/{{ category }}" *ngFor="let category of article.Categories | slice:0:5">

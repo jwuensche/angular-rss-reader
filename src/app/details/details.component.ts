@@ -3,6 +3,7 @@ import { ArticleInterface, FeedService } from '../feed.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Article } from '../article';
+import { StorageService} from "../storage.service";
 
 @Component({
   selector: 'app-details',
@@ -18,6 +19,7 @@ export class DetailsComponent implements OnInit {
 
   constructor(
   	public feedService: FeedService,
+  	public storageService: StorageService,
   	private location: Location,
     private route: ActivatedRoute
   	) { }
@@ -26,6 +28,7 @@ export class DetailsComponent implements OnInit {
     this.getId();
     this.getName();
   	this.getFeed();
+  	this.storageService.setItem('showNavbar','true');
   }
 
   getFeed() {
@@ -45,6 +48,7 @@ export class DetailsComponent implements OnInit {
 
   getName() {
     this.feed_name = this.route.snapshot.paramMap.get("name");
+    this.storageService.setItem('currentSection', this.feed_name);
   }
 
   async getArticle() {

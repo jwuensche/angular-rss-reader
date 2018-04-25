@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Feed, FeedService } from '../feed.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { StorageService } from "../storage.service";
 
 @Component({
   selector: 'app-tag',
@@ -17,6 +18,7 @@ export class TagComponent implements OnInit {
 
   constructor(
   public feedService: FeedService,
+	public storageService: StorageService,
 	private location: Location,
 	private route: ActivatedRoute
   	) { }
@@ -25,6 +27,7 @@ export class TagComponent implements OnInit {
   	this.getTag();
     this.getName();
     this.getFeed();
+    this.storageService.setItem('showNavbar', 'true');
   }
 
   getFeed() {
@@ -45,6 +48,7 @@ export class TagComponent implements OnInit {
 
   getName() {
     this.feedName = this.route.snapshot.paramMap.get("name");
+    this.storageService.setItem('currentSection', this.feedName);
   }
 
   async getImages() {

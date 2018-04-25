@@ -18,8 +18,19 @@
 
 .navigation a {
   text-decoration: none;
-  padding: 1em;
+
   color: white;
+  padding: 1em;
+  font-weight: normal;
+}
+
+/*  Otherwise Navbar will be moved partially above visible space*/
+div {
+  margin-top: 1em;
+}
+
+.selected {
+  background: #040F0F;
 }
 
 .navigation a:hover {

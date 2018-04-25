@@ -1,12 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 body {
 	margin: 0 !important;
 	padding: 0 !important;
 	background: #E7E8E5;
 }
 html * {
-	font-family: Open Sans;
+	font-family: 'Roboto', sans-serif;
 	margin: 0;
 	padding: 0;
+}
+
+a {
+  color: white;
+  font-weight: bold;
 }
 
 .flex-container {

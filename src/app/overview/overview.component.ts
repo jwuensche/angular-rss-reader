@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Feed, FeedService } from '../feed.service';
 import {ActivatedRoute} from "@angular/router";
+import { StorageService } from "../storage.service";
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -16,6 +17,7 @@ export class OverviewComponent implements OnInit {
 
   constructor(
   	public feedService: FeedService,
+    public storageService: StorageService,
     private route: ActivatedRoute
   	) {
     route.params.subscribe(val => {
@@ -27,9 +29,11 @@ export class OverviewComponent implements OnInit {
   ngOnInit() {
     this.getParameters();
     this.getFeed();
+    this.storageService.setItem('showNavbar', 'true');
   }
 
   getFeed() {
+    this.storageService.setItem('currentSection', this.feedName);
     this.feedService.getFeed(this.feedName).subscribe(
       data => this.feed = data,
       err => console.log(err),

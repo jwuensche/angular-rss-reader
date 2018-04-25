@@ -4,6 +4,7 @@ export class Article {
   thumbnail: string;
   figcaption: string[];
   author: string;
+  link:string;
   published: string;
   images?: string[];
 

@@ -1,4 +1,11 @@
-	<ul class="navigation">
-    <a routerLink="/overview/{{ item.Name }}" *ngFor="let item of feeds">{{ item.Name }}</a>
-    <a style="margin-left: auto" routerLink="/settings"><img style="height: 1em;" src="https://freeiconshop.com/wp-content/uploads/edd/settings-solid.png"></a>
-	</ul>
+<ul class="navigation" *ngIf="display == 'true'">
+  <div *ngFor="let item of feeds">
+    <a *ngIf="item.Name == feedName; else notSelected" routerLink="/overview/{{ item.Name }}" class="selected"> {{ item.Name }} </a>
+    <ng-template #notSelected>
+      <a routerLink="/overview/{{ item.Name }}">{{ item.Name }}</a>
+    </ng-template>
+  </div>
+  <a style="margin-left: auto" routerLink="/settings">
+    <fa name="cog"></fa>
+  </a>
+</ul>
