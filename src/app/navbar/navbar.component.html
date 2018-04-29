@@ -1,11 +1,13 @@
 <ul class="navigation" *ngIf="display == 'true'">
-  <div *ngFor="let item of feeds">
-    <a *ngIf="item.Name == feedName; else notSelected" routerLink="/overview/{{ item.Name }}" class="selected"> {{ item.Name }} </a>
+  <div *ngFor="let item of feedService.feedList">
+    <div *ngIf="item.Selected">
+    <a *ngIf="item.Name == feedName; else notSelected" routerLink="/user/overview/{{ item.Name }}" class="selected"> {{ item.Name }} </a>
     <ng-template #notSelected>
-      <a routerLink="/overview/{{ item.Name }}">{{ item.Name }}</a>
-    </ng-template>
+      <a routerLink="/user/overview/{{ item.Name }}">{{ item.Name }}</a>
+      </ng-template>
+    </div>
   </div>
-  <a style="margin-left: auto" routerLink="/settings">
+  <a style="margin-left: auto" routerLink="/user/settings">
     <fa name="cog"></fa>
   </a>
 </ul>

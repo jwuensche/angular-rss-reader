@@ -1,17 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OverviewComponent } from './overview/overview.component';
-import { DetailsComponent } from './details/details.component';
-import { TagComponent } from './tag/tag.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import {SettingsComponent} from "./settings/settings.component";
+import { LoginComponent } from "./login/login.component";
+import { AuthGuard} from "./auth-guard.service";
+import {OverviewComponent} from "./overview/overview.component";
+import {TagComponent} from "./tag/tag.component";
+import {DetailsComponent} from "./details/details.component";
+import {SettingsComponent} from './settings/settings.component';
 
 const routes: Routes = [
-	{ path: '', redirectTo: '/overview', pathMatch: 'full'},
-	{ path: 'overview/:name', component: OverviewComponent },
-	{ path: 'details/:name/:id', component: DetailsComponent },
-	{ path: 'tag/:name/:tag', component: TagComponent },
-  { path: 'settings', component: SettingsComponent},
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: 'login', component: LoginComponent},
+  {
+    path: 'user',
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'overview/:name', component: OverviewComponent },
+      { path: 'tag/:name/:tag', component: TagComponent },
+      { path: 'details/:name/:id', component: DetailsComponent },
+      { path: 'settings', component: SettingsComponent }
+    ]
+  },
 	{ path: '**', component: PageNotFoundComponent }
 ];
 

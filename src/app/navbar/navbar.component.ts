@@ -9,7 +9,6 @@ import { StorageService } from "../storage.service";
 })
 export class NavbarComponent implements OnInit {
 
-  feeds: FeedList;
   feedName;
   display;
 
@@ -26,12 +25,5 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getFeedList();
-  }
-
-  getFeedList() {
-    this.feedService.getFeedList().subscribe(
-      data => this.feeds = data
-    );
   }
 }

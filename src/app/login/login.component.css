@@ -1,0 +1,26 @@
+.login-grid {
+  height: 100%;
+  display: grid;
+}
+
+.floating-box {
+  height: 250px;
+  width: 400px;
+  margin: auto;
+  margin-top: 150px;
+  background-color: white;
+  box-shadow: 0 0 10px grey;
+}
+
+.box-subgrid {
+  display: grid;
+  align-content: center;
+  align-items: center;
+  grid-template-columns: 50px 300px 50px;
+  grid-template-rows: 50px 50px 50px 50px auto;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}

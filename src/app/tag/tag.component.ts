@@ -24,7 +24,8 @@ export class TagComponent implements OnInit {
   	) { }
 
   ngOnInit() {
-  	this.getTag();
+  	debugger
+    this.getTag();
     this.getName();
     this.getFeed();
     this.storageService.setItem('showNavbar', 'true');

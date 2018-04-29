@@ -38,13 +38,24 @@ export interface ArticleInterface {
 export interface FeedList {
   Name: string;
   URL: string;
+  Selected?: boolean;
 }
 
 @Injectable()
 export class FeedService {
+
+  feedList: FeedList;
+
   constructor(
   	private httpClient: HttpClient
-  	) { }
+  	) {
+      this.httpClient.get<FeedList>("http://localhost:8000/feeds").subscribe(
+        value => this.feedList = value,
+        () => {},
+        () => this.feedList.forEach(element => element.Selected = true)
+      );
+
+    }
 
   getFeed(name: string){
 	  return this.httpClient.get<Feed>("http://localhost:8000/feed/" + name);

@@ -1,5 +1,5 @@
-<form>
-  <input type="text" name="testfield">
-  <input type="submit">
-</form>
-<div> stuff: {{ getLocalStorage('test') }}</div>
+<div class="content-box">
+  <div class="center-list" *ngFor="let element of feedService.feedList">
+    <mat-checkbox [checked]="element.Selected" (change)="onChange(element.Name)">{{ element.Name }}</mat-checkbox>
+  </div>
+</div>

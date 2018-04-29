@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import { StorageService} from "../storage.service";
+import { FeedService, FeedList } from "../feed.service";
 
 @Component({
   selector: 'app-settings',
@@ -8,26 +10,19 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class SettingsComponent implements OnInit {
 
-  testname: string;
-
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private feedService: FeedService,
+    public storageService: StorageService
   ) { }
 
   ngOnInit() {
-    this.getParameters();
+    this.storageService.setItem('showNavbar','true');
   }
 
-  getParameters() {
-    this.route.queryParams.subscribe( params => {
-      this.testname = params["testfield"];
-    },
-      _ => console.log('error occurred'),
-      () => localStorage.setItem('test', this.testname)
-      );
-  }
-
-  getLocalStorage(key: string) {
-    return localStorage.getItem(key);
+  onChange(name: string) {
+    this.feedService.feedList.forEach(element => {
+      element.Name == name ? element.Selected = !element.Selected : {}
+    });
   }
 }

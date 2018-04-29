@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
 	margin: 0 !important;
@@ -112,8 +113,10 @@ a {
 .flex-item-cat:hover {
   filter: brightness(110%);
 }
+
 .flex-item:hover {
   filter: brightness(110%);
+  transition: filter 1s;
 }
 
 .thumbnail {

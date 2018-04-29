@@ -1,6 +1,6 @@
 <h1> Articles related to {{ cat }}</h1>
 <div>
-	<ul class="flex-container">
+	<ul style="margin-top: 0" class="flex-container">
 
 		<div *ngFor="let article of (feed | articles); let i = index" [attr.data-index]="i">
 			<div *ngFor="let category of (article.Categories)">

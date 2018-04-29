@@ -2,7 +2,7 @@
 
 # sync folder
 /src/app/.sync/
-
+.sync/
 # compiled output
 /dist
 /dist-server
