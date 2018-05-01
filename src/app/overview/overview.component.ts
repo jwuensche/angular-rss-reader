@@ -27,9 +27,11 @@ export class OverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getParameters();
-    this.getFeed();
     this.storageService.setItem('showNavbar', 'true');
+    this.getParameters();
+    if (this.feedName){
+      this.getFeed();
+    }
   }
 
   getFeed() {
@@ -47,14 +49,16 @@ export class OverviewComponent implements OnInit {
 
   async getImages() {
     this.images = [];
-    let wrapper = document.createElement("div")
-    this.feed.Items.forEach((item,index)=>{
-      wrapper.innerHTML = item.Content;
-      try{
-      this.images[index] = wrapper.getElementsByTagName("img")[0].src;
-      } catch {
-        console.log("some error occurred")
-      }
-    });
+    if(this.feedName){
+      let wrapper = document.createElement("div")
+      this.feed.Items.forEach((item,index)=>{
+        wrapper.innerHTML = item.Content;
+        try{
+        this.images[index] = wrapper.getElementsByTagName("img")[0].src;
+        } catch {
+          console.log("some error occurred")
+        }
+      });
+    }
   }
 }

@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="feedName; else Default">
 	<!-- Head of Overview -->
 <!--   	<span *ngIf="feed">
   		<h1>{{ feed.feed.title }}</h1>
@@ -28,3 +28,8 @@
 		</li>
 	</ul>
 </div>
+<ng-template #Default>
+	<div style="margin-top: 50px; padding: 30px; text-align: center; font-size: 20px;">
+		Hmm ... nothing here, see if you can navigate with the topbar or add feeds in the settings menu.
+	</div>
+</ng-template>

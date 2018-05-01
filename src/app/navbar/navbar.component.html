@@ -1,4 +1,7 @@
 <ul class="navigation" *ngIf="display == 'true'">
+  <a routerLink="/user/home">
+    <mat-icon>home</mat-icon>
+  </a>
   <div *ngFor="let item of feedService.feedList">
     <div *ngIf="item.Selected">
     <a *ngIf="item.Name == feedName; else notSelected" routerLink="/user/overview/{{ item.Name }}" class="selected"> {{ item.Name }} </a>
@@ -8,6 +11,6 @@
     </div>
   </div>
   <a style="margin-left: auto" routerLink="/user/settings">
-    <fa name="cog"></fa>
+    <mat-icon>rss_feed</mat-icon>
   </a>
 </ul>

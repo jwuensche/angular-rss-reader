@@ -21,8 +21,9 @@ import { StorageService } from "./storage.service";
 import { LoginComponent } from './login/login.component';
 import {AuthService} from "./auth.service";
 import {AuthGuard} from './auth-guard.service';
-import {MatProgressSpinnerModule, MatSnackBarModule, MatButtonModule, MatCheckboxModule, MatInputModule } from '@angular/material';
+import {MatProgressSpinnerModule, MatSnackBarModule, MatButtonModule, MatCheckboxModule, MatInputModule, MatIconModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     PageNotFoundComponent,
     GalleryComponent,
     SettingsComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   providers: [
     FeedService,
@@ -56,6 +58,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatInputModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatIconModule,
     BrowserAnimationsModule
   ],
   bootstrap: [AppComponent]

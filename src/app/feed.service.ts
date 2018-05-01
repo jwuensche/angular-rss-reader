@@ -43,18 +43,17 @@ export interface FeedList {
 
 @Injectable()
 export class FeedService {
-
-  feedList: FeedList;
+  //TODO set type now only for webpack so it will chill down
+  feedList;
 
   constructor(
   	private httpClient: HttpClient
   	) {
-      this.httpClient.get<FeedList>("http://localhost:8000/feeds").subscribe(
+      this.httpClient.get<Array<FeedList>>("http://localhost:8000/feeds").subscribe(
         value => this.feedList = value,
         () => {},
-        () => this.feedList.forEach(element => element.Selected = true)
+        () => this.feedList.forEach(element => element.Selected = localStorage.getItem(element.Name) == 'true' ? true : false)
       );
-
     }
 
   getFeed(name: string){
@@ -63,6 +62,9 @@ export class FeedService {
   getArticle(id: number, name: string){
 	  return this.httpClient.get<ArticleInterface>("http://localhost:8000/feed/"+ name + "/" +id);
   }
+
+
+  //TODO fix typing problem occuring here since i register it only as a single object but a array is later expected
   getFeedList(){
     return this.httpClient.get<FeedList>("http://localhost:8000/feeds");
   }

@@ -18,11 +18,13 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
     this.storageService.setItem('showNavbar','true');
+    this.storageService.setItem('currentSection', '');
   }
 
   onChange(name: string) {
     this.feedService.feedList.forEach(element => {
-      element.Name == name ? element.Selected = !element.Selected : {}
+      //Setting changes into localStorage so that future session can use settings too
+      element.Name == name ? (element.Selected = !element.Selected, localStorage.setItem(element.Name, element.Selected)) : {}
     });
   }
 }

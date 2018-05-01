@@ -1,5 +1,10 @@
 <div class="content-box">
-  <div class="center-list" *ngFor="let element of feedService.feedList">
-    <mat-checkbox [checked]="element.Selected" (change)="onChange(element.Name)">{{ element.Name }}</mat-checkbox>
+  <div class="settings-grid">
+    <div style="background-color: white; border-radius: 1px; padding: 10px; box-shadow: 0 0 1px black;">
+        <div style="margin-bottom: 5px; border-bottom: 1px solid grey;">Choose feeds to display:</div>
+        <div class="center-list" style="grid-column-start: 1;" *ngFor="let element of feedService.feedList">
+        <mat-checkbox [checked]="element.Selected" (change)="onChange(element.Name)">{{ element.Name }}</mat-checkbox>
+      </div>
+    </div>
   </div>
 </div>

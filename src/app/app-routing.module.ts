@@ -7,6 +7,7 @@ import {OverviewComponent} from "./overview/overview.component";
 import {TagComponent} from "./tag/tag.component";
 import {DetailsComponent} from "./details/details.component";
 import {SettingsComponent} from './settings/settings.component';
+import { DashboardComponent} from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -15,10 +16,12 @@ const routes: Routes = [
     path: 'user',
     canActivate: [AuthGuard],
     children: [
+      { path: 'overview' , component: OverviewComponent },
       { path: 'overview/:name', component: OverviewComponent },
       { path: 'tag/:name/:tag', component: TagComponent },
       { path: 'details/:name/:id', component: DetailsComponent },
-      { path: 'settings', component: SettingsComponent }
+      { path: 'settings', component: SettingsComponent },
+      { path: 'home', component: DashboardComponent}
     ]
   },
 	{ path: '**', component: PageNotFoundComponent }

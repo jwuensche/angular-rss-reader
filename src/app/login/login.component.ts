@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(user,password).subscribe(() => {
       if (this.authService.isLoggedIn) {
         this.loading = false;
-        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : 'user/overview/SpaceFlightNow';
+        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : 'user/home';
         this.router.navigate([redirect]);
       }
     },

@@ -1,0 +1,8 @@
+.content-box {
+  margin-top: 50px;
+}
+
+.feed-list {
+  display: flex;
+  flex-direction: row;
+}
