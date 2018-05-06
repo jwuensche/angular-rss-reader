@@ -11,5 +11,10 @@
 .settings-grid {
   display: grid;
   grid-template-columns: 300px;
+  grid-gap: 15px;
   justify-content: center;
+}
+
+.button {
+  background-color: #e0e0e0;
 }

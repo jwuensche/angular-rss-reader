@@ -2,7 +2,9 @@
   margin-top: 50px;
 }
 
-.feed-list {
-  display: flex;
-  flex-direction: row;
+.feed-box {
+  background-color: white;
+  padding: 15px;
+  margin: 15px;
+  border-radius: 2px;
 }

@@ -19,4 +19,8 @@ export class DashboardComponent implements OnInit {
     this.storageService.setItem('currentSection','');
   }
 
+  onClick(name: string) {
+    this.feedService.feedList.map( element => element.Name == name ? (element.Selected = !element.Selected, localStorage.setItem(element.Name, element.Selected)) : {})
+  }
+
 }

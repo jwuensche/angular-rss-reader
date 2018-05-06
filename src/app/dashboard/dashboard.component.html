@@ -1,7 +1,19 @@
 <div class="content-box">
-  <div class="feed-list">
+  <div class="feed-box">
+  <div style="border-bottom: 1px solid grey; padding-bottom: 5px;"> Available Feeds:</div> <br>
+    <mat-chip-list>
     <div *ngFor="let element of feedService.feedList">
-      {{ element.Name }}
+          <div *ngIf="element.Selected; else notSelected">
+          <mat-chip selected="true" style="margin: 5px" (click)="onClick(element.Name)">
+            {{ element.Name }}
+          </mat-chip>
+          </div>
+          <ng-template #notSelected>
+            <mat-chip style="margin: 5px" (click)="onClick(element.Name)">
+              {{ element.Name }}
+            </mat-chip>
+          </ng-template>
     </div>
+    </mat-chip-list>
   </div>
 </div>

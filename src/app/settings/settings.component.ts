@@ -8,6 +8,9 @@ import { FeedService, FeedList } from "../feed.service";
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
+
+
+
 export class SettingsComponent implements OnInit {
 
   constructor(
@@ -26,5 +29,9 @@ export class SettingsComponent implements OnInit {
       //Setting changes into localStorage so that future session can use settings too
       element.Name == name ? (element.Selected = !element.Selected, localStorage.setItem(element.Name, element.Selected)) : {}
     });
+  }
+
+  submitURL(url: string) {
+    this.feedService.postFeeds(url).subscribe(() => {});
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export interface Feed {
   Url: string;
@@ -23,6 +23,11 @@ export interface Feed {
 	]
 }
 
+export interface FeedRegistry{
+  url: string
+}
+
+
 export interface ArticleInterface {
 	Title: string;
 	Description: string;
@@ -40,6 +45,12 @@ export interface FeedList {
   URL: string;
   Selected?: boolean;
 }
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
 
 @Injectable()
 export class FeedService {
@@ -67,5 +78,10 @@ export class FeedService {
   //TODO fix typing problem occuring here since i register it only as a single object but a array is later expected
   getFeedList(){
     return this.httpClient.get<FeedList>("http://localhost:8000/feeds");
+  }
+
+  postFeeds(url: string){
+    const bar: FeedRegistry = { url: url};
+    return this.httpClient.post<FeedRegistry>("http://localhost:8000/addFeed", bar, httpOptions);
   }
 }
