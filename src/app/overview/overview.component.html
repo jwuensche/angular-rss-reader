@@ -4,7 +4,7 @@
   		<h1>{{ feed.feed.title }}</h1>
 	</span> -->
 	<ul class="flex-container">
-		<li class="flex-item" routerLink="/user/details/{{ feedName }}/{{ i }}" *ngFor="let article of (feed | articles); let i = index" [attr.data-index]="i">
+		<li class="flex-item" routerLink="/user/details/{{ feedName }}/{{ i }}" *ngFor="let article of (feed | articles); let i = index" [attr.data-index]="i" queryParamsHandling="preserve">
 			<ul class="flex-container-interior">
 				<div class="flex-item-interior">
 					<h2>{{ article.Title }}</h2>
@@ -14,7 +14,7 @@
             <fa name="link"></fa>  <a href="{{ article.Link }}">Visit the page</a>
 					</div>
 					<ul class="flex-container-cat">
-						<a class="flex-item-cat" routerLink="/user/tag/{{ feedName }}/{{ category }}" *ngFor="let category of article.Categories | slice:0:5">
+						<a class="flex-item-cat" routerLink="/user/tag/{{ feedName }}/{{ category }}" *ngFor="let category of article.Categories | slice:0:5" queryParamsHandling="preserve">
 							{{ category }}
 						</a>
 					</ul>

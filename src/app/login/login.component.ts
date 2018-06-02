@@ -3,6 +3,7 @@ import { StorageService } from '../storage.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { MatSnackBar } from '@angular/material';
+import { FeedService } from '../feed.service'
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
     public storageService: StorageService,
     public router: Router,
     public snackBar: MatSnackBar,
-    private authService: AuthService
+    private authService: AuthService,
+    public feedService: FeedService
   ) { }
 
   ngOnInit() {
@@ -26,25 +28,26 @@ export class LoginComponent implements OnInit {
 
   login(user: string, password: string) {
     this.loading = true;
-    this.authService.login(user,password).subscribe(() => {
-      if (this.authService.isLoggedIn) {
+    this.authService.login(user,password).subscribe(result => {
+      if (result) {
         this.loading = false;
         let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : 'user/home';
-        this.router.navigate([redirect]);
+        let navigationExtras: NavigationExtras = {
+          queryParamsHandling: '',
+          preserveFragment: true,
+          queryParams: { sessionID: this.authService.token.Token }
+        };
+        this.feedService.getFeedList(this.authService.token.Token);
+        this.router.navigate([redirect], navigationExtras);
       }
     },
     () => {},
-    () => {if(!this.authService.isLoggedIn){
+    () => {
       this.loading = false;
       this.snackBar.open('Wrong password or user name', 'OK', {
         duration: 4000,
-      });
-    }}
+      });}
   );
-  }
-
-  logout() {
-    this.authService.logout();
   }
 
 }

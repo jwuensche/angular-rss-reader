@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Article } from '../article';
 import { StorageService} from "../storage.service";
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-details',
@@ -21,6 +22,7 @@ export class DetailsComponent implements OnInit {
   	public feedService: FeedService,
   	public storageService: StorageService,
   	private location: Location,
+    public authService: AuthService,
     private route: ActivatedRoute
   	) { }
 
@@ -32,7 +34,7 @@ export class DetailsComponent implements OnInit {
   }
 
   getFeed() {
-  	this.feedService.getArticle(this.id,this.feed_name).subscribe(
+  	this.feedService.getArticle(this.id,this.feed_name, this.authService.token.Token).subscribe(
   		data => this.article_json = data,
       err => console.log('Error' + err ),
       () => this.getArticle());

@@ -1,25 +1,66 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
+import { Subject } from "rxjs/Subject";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
+
+export interface Token {
+    Token: string;
+}
+
 @Injectable()
 export class AuthService {
   isLoggedIn = false;
+  token: Token;
 
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  login(user: string, password: string): Observable<boolean> {
-    // return Observable.of(true).delay(1000).do(() => this.isLoggedIn = true);
-    if(user=='fred' && password=='test')
-      return Observable.of(true).delay(1000).do(() => this.isLoggedIn = true);
-    else
-      return Observable.of(false).delay(1000).do(() => this.isLoggedIn = false);
+  constructor (
+    private http : HttpClient
+  ){}
+
+  authServerUrl ="http://localhost:9000/auth"
+  tokenServerUrl = "http://localhost:9000/checkToken"
+  signOffUrl ="http://localhost:9000/logout"
+
+  login(user: string, password: string): Subject<boolean> {
+    let completionSubject = new Subject<boolean>()
+
+    this.http.post<Token>(this.authServerUrl, { "Name": user, "Password": password }, httpOptions).subscribe(
+      value => this.token = value,
+      () => { completionSubject.complete() },
+      () => { if (this.token.Token) {this.isLoggedIn=true; completionSubject.next(true)} }
+    )
+    return completionSubject;
   }
 
-  logout(): void {
+  logout(token: string): Subject<boolean> {
     this.isLoggedIn = false;
+    let response = new Subject<boolean>();
+    this.http.post(this.signOffUrl, { "Token": token }, httpOptions).subscribe(
+      () => {},
+      () => { response.complete() },
+      () => { response.next(true) }
+    )
+    return response;
+  }
+
+  checkValidity(): Subject<boolean> {
+    let valid = new Subject<boolean>();
+    this.http.post(this.tokenServerUrl, this.token, httpOptions).subscribe(
+      () => {},
+      () => valid.complete(),
+      () => valid.next(true)
+    )
+    return valid
   }
 }

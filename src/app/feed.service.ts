@@ -54,34 +54,31 @@ const httpOptions = {
 
 @Injectable()
 export class FeedService {
-  //TODO set type now only for webpack so it will chill down
   feedList;
 
   constructor(
   	private httpClient: HttpClient
-  	) {
-      this.httpClient.get<Array<FeedList>>("http://localhost:8000/feeds").subscribe(
-        value => this.feedList = value,
-        () => {},
-        () => this.feedList.forEach(element => element.Selected = localStorage.getItem(element.Name) == 'true' ? true : false)
-      );
-    }
+  	) {}
 
-  getFeed(name: string){
-	  return this.httpClient.get<Feed>("http://localhost:8000/feed/" + name);
+  getFeed(name: string, token: string){
+	  return this.httpClient.post<Feed>("http://localhost:8000/feed/" + name, {"Token": token}, httpOptions);
   }
-  getArticle(id: number, name: string){
-	  return this.httpClient.get<ArticleInterface>("http://localhost:8000/feed/"+ name + "/" +id);
+  getArticle(id: number, name: string, token: string){
+	  return this.httpClient.post<ArticleInterface>("http://localhost:8000/feed/"+ name + "/" +id, {"Token":token}, httpOptions);
   }
 
 
   //TODO fix typing problem occuring here since i register it only as a single object but a array is later expected
-  getFeedList(){
-    return this.httpClient.get<FeedList>("http://localhost:8000/feeds");
+  getFeedList(token: string){
+    this.httpClient.post<Array<FeedList>>("http://localhost:8000/feeds", {"Token": token}).subscribe(
+      value => this.feedList = value,
+      () => {},
+      () => this.feedList.forEach(element => element.Selected = localStorage.getItem(element.Name) == 'true' ? true : false)
+    );
   }
 
-  postFeeds(url: string){
-    const bar: FeedRegistry = { url: url};
-    return this.httpClient.post<FeedRegistry>("http://localhost:8000/addFeed", bar, httpOptions);
+  postFeeds(url: string) {
+    const bar: FeedRegistry = {url: url};
+    return this.httpClient.put<FeedRegistry>("http://localhost:8000/addFeeds", bar, httpOptions);
   }
 }

@@ -5,20 +5,27 @@ import {
   RouterStateSnapshot,
   CanActivateChild,
   NavigationExtras,
-  CanLoad, Route
+  CanLoad, ActivatedRoute
 }                           from '@angular/router';
 import { AuthService }      from './auth.service';
 
 @Injectable()
 export class AuthGuard {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if(this.authService.isLoggedIn){
+    if (this.authService.isLoggedIn)
+      return true
+    if (this.route.snapshot.paramMap.get("sessionID")) {
       return true
     }
     this.authService.redirectUrl = state.url;
     this.router.navigate(['/login']);
+    return false
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {

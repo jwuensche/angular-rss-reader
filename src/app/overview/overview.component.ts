@@ -3,6 +3,7 @@ import { Feed, FeedService } from '../feed.service';
 import {ActivatedRoute} from "@angular/router";
 import { StorageService } from "../storage.service";
 import { DatePipe } from '@angular/common';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-overview',
@@ -18,6 +19,7 @@ export class OverviewComponent implements OnInit {
   constructor(
   	public feedService: FeedService,
     public storageService: StorageService,
+    public authService: AuthService,
     private route: ActivatedRoute
   	) {
     route.params.subscribe(val => {
@@ -36,7 +38,7 @@ export class OverviewComponent implements OnInit {
 
   getFeed() {
     this.storageService.setItem('currentSection', this.feedName);
-    this.feedService.getFeed(this.feedName).subscribe(
+    this.feedService.getFeed(this.feedName, this.authService.token.Token).subscribe(
       data => this.feed = data,
       err => console.log(err),
       () => this.getImages()

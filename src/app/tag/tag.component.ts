@@ -3,6 +3,7 @@ import { Feed, FeedService } from '../feed.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { StorageService } from "../storage.service";
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-tag',
@@ -20,11 +21,11 @@ export class TagComponent implements OnInit {
   public feedService: FeedService,
 	public storageService: StorageService,
 	private location: Location,
+  public authService: AuthService,
 	private route: ActivatedRoute
   	) { }
 
   ngOnInit() {
-  	debugger
     this.getTag();
     this.getName();
     this.getFeed();
@@ -32,7 +33,7 @@ export class TagComponent implements OnInit {
   }
 
   getFeed() {
-    this.feedService.getFeed(this.feedName).subscribe(
+    this.feedService.getFeed(this.feedName, this.authService.token.Token).subscribe(
       data => this.feed = data,
       err => console.log('Error' + err),
       () => this.getImages()

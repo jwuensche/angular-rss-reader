@@ -3,6 +3,7 @@ import { ArticleInterface, FeedService } from '../feed.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Article } from '../article';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-gallery',
@@ -20,6 +21,7 @@ export class GalleryComponent implements OnInit {
   constructor(
     public feedService: FeedService,
     private location: Location,
+    public authService: AuthService,
     private route: ActivatedRoute
   ) { }
 
@@ -35,7 +37,7 @@ export class GalleryComponent implements OnInit {
   }
 
   getArticle() {
-    this.feedService.getArticle(this.id, this.feed_name).subscribe(
+    this.feedService.getArticle(this.id, this.feed_name, this.authService.token.Token).subscribe(
       (data) => this.article_json = data,
       (err) => console.log("Error occurred during initialization of Gallery Component: "+ err),
       () => this.getImages()
