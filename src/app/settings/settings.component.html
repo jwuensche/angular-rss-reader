@@ -1,19 +1,31 @@
 <div class="content-box">
-  <div class="settings-grid">
-    <div style="background-color: white; border-radius: 1px; padding: 10px; box-shadow: 0 0 1px black;">
-        <div style="margin-bottom: 5px; border-bottom: 1px solid grey;">Choose feeds to display:</div>
+  <div class="settings-flex">
+    <div class="box">
+        <div class="heading">Choose feeds to display:</div>
         <div class="center-list" style="grid-column-start: 1;" *ngFor="let element of feedService.feedList">
         <mat-checkbox [checked]="element.Selected" (change)="onChange(element.Name)">{{ element.Name }}</mat-checkbox>
       </div>
     </div>
-    <div style="background-color: white; border-radius: 1px; padding: 10px; box-shadow: 0 0 1px black; grid-column-start: 2" (keyup.enter)="submitURL(url.value)">
-        <div style="margin-bottom: 5px; border-bottom: 1px solid grey;">Submit feeds</div>
+    <div class="box" (keyup.enter)="submitURL(url.value)">
+        <div class="heading">Submit feeds</div>
         <mat-form-field>
           <input  matInput #url placeholder="Feed URL" type="text">
           <mat-hint>An URL is required</mat-hint>
           <mat-error>Please enter a valid url</mat-error>
         </mat-form-field>
         <button class="button" type="button" mat-button (click)="submitURL(url.value)">Submit</button>
+    </div>
+    <div class="box">
+      <div class="heading">Change Password</div>
+      <mat-form-field>
+        <input  matInput #user placeholder="User name" type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <input  matInput #cpass placeholder="Current Password" type="password">
+      </mat-form-field>
+      <mat-form-field>
+        <input  matInput #pass placeholder="New Password" type="password">
+      </mat-form-field>
     </div>
   </div>
 </div>

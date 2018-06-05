@@ -33,8 +33,7 @@ export class LoginComponent implements OnInit {
         this.loading = false;
         let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : 'user/home';
         let navigationExtras: NavigationExtras = {
-          queryParamsHandling: '',
-          preserveFragment: true,
+          queryParamsHandling: 'preserve',
           queryParams: { sessionID: this.authService.token.Token }
         };
         this.feedService.getFeedList(this.authService.token.Token);

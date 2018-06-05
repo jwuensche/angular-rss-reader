@@ -1,6 +1,6 @@
 <div style="text-align: center; margin-top: 100px" *ngIf="article.images.length != 0">
   Image: {{ current_image +1 }} of {{ article.images.length }}
-  <div class="gallery-grid">
+  <div class="gallery-grid" (swipeleft)="increment()" (swiperight)="decrement()">
     <div class="gallery-item-a" (click)="decrement()" *ngIf="article.images.length > 1">
         <div class="arrow-left"></div>
     </div>

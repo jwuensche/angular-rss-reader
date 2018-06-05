@@ -2,4 +2,12 @@ img {
   width:200px;
 }
 
+.small {
+  font-size: 12px;
+}
 
+@media all and (max-width: 600px) {
+  img {
+    display: none;
+  }
+}

@@ -58,7 +58,6 @@ export class OverviewComponent implements OnInit {
         try{
         this.images[index] = wrapper.getElementsByTagName("img")[0].src;
         } catch {
-          console.log("some error occurred")
         }
       });
     }

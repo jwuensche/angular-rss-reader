@@ -24,6 +24,20 @@ import {AuthGuard} from './auth-guard.service';
 import {MatProgressSpinnerModule, MatSnackBarModule, MatButtonModule, MatCheckboxModule, MatChipsModule , MatInputModule, MatIconModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+
+declare var Hammer: any;
+
+export class MyHammerConfig extends HammerGestureConfig  {
+  buildHammer(element: HTMLElement) {
+    let mc = new Hammer(element, {
+      touchAction: "pan-y"
+    });
+    return mc;
+  }
+}
+
 
 @NgModule({
   declarations: [
@@ -46,6 +60,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AuthGuard,
     StorageService,
     FeedService,
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig ,
+    },
     MessageService
   ],
   imports: [
@@ -60,6 +78,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatProgressSpinnerModule,
     MatIconModule,
     MatChipsModule,
+    MatMenuModule,
     BrowserAnimationsModule
   ],
   bootstrap: [AppComponent]

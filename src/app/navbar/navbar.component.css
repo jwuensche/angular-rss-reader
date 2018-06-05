@@ -10,7 +10,9 @@
   display: flex;
 
   flex-flow: row;
+  flex-wrap: wrap;
   position: fixed;
+  align-items: stretch ;
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
   height: 50px;
@@ -25,10 +27,6 @@
   font-weight: normal;
 }
 
-/*  Otherwise Navbar will be moved partially above visible space*/
-div {
-  margin-top: 0.5em;
-}
 
 .selected {
   background: #040F0F;
@@ -36,4 +34,5 @@ div {
 
 .navigation a:hover {
   background: #040F0F;
+  cursor: pointer;
 }

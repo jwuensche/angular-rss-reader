@@ -18,11 +18,8 @@ export class AuthGuard {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (this.authService.isLoggedIn)
+    if (this.authService.isLoggedIn && this.authService.token.Token)
       return true
-    if (this.route.snapshot.paramMap.get("sessionID")) {
-      return true
-    }
     this.authService.redirectUrl = state.url;
     this.router.navigate(['/login']);
     return false

@@ -1,15 +1,30 @@
-<ul class="navigation" *ngIf="display == 'true'">
+<ul onresize="calculateToolbar()" class="navigation" *ngIf="display == 'true'">
   <a routerLink="/user/home" queryParamsHandling="preserve">
     <mat-icon>home</mat-icon>
   </a>
-  <div *ngFor="let item of feedService.feedList">
-    <div *ngIf="item.Selected">
-    <a *ngIf="item.Name == feedName; else notSelected" routerLink="/user/overview/{{ item.Name }}" queryParamsHandling="preserve" class="selected"> {{ item.Name }} </a>
-    <ng-template #notSelected>
-      <a routerLink="/user/overview/{{ item.Name }}" queryParamsHandling="preserve">{{ item.Name }}</a>
+  <div style="display: flex; align-self: center;" *ngIf="innerWidth > 600; else mobile">
+    <div *ngFor="let item of feedService.feedList">
+      <div *ngIf="item.Selected">
+      <a *ngIf="item.Name == feedName; else notSelected" routerLink="/user/overview/{{ item.Name }}" queryParamsHandling="preserve" class="selected"> {{ item.Name }} </a>
+      <ng-template #notSelected>
+        <a routerLink="/user/overview/{{ item.Name }}" queryParamsHandling="preserve">{{ item.Name }}</a>
       </ng-template>
+      </div>
     </div>
   </div>
+  <ng-template #mobile>
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon style="color: #ffffff;">list</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <div *ngFor="let item of feedService.feedList">
+        <button mat-menu-item routerLink="/user/overview/{{ item.Name }}" queryParamsHandling="preserve">{{ item.Name }}</button>
+      </div>
+    </mat-menu>
+    <div style="align-self: center; color: #ffffff;">
+      {{ feedName }}
+    </div>
+  </ng-template>
   <a style="margin-left: auto" routerLink="/user/settings" queryParamsHandling="preserve">
     <mat-icon>rss_feed</mat-icon>
   </a>

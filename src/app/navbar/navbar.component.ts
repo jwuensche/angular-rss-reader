@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { FeedService, FeedList } from "../feed.service";
 import { StorageService } from "../storage.service";
 import { Router } from '@angular/router';
@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
 
   feedName;
   display;
+  innerWidth;
 
   constructor(
     public feedService: FeedService,
@@ -28,16 +29,28 @@ export class NavbarComponent implements OnInit {
     this.storageService.getItem('showNavbar').subscribe(
       val => this.display = val
     );
+    this.storageService.getItem('feeds').subscribe(
+      val => {}
+    );
   }
 
   ngOnInit() {
+    this.innerWidth = window.innerWidth;
   }
 
   logout() {
     this.authService.logout(this.authService.token.Token).subscribe(
       () => {},
       () => this.snackBar.open('Logout failed. Try again or close the window to be automatically logged off in 30 minutes.', 'OK', {duration: 5000}),
-      () => this.router.navigate(['/login'])
+      () => {
+        this.router.navigate(['/login'])
+        this.snackBar.open('Successfully logged off.', 'OK', {duration: 5000})
+      }
     );
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
   }
 }

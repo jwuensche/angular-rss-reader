@@ -8,13 +8,26 @@
   align-items: flex-start;
 }
 
-.settings-grid {
-  display: grid;
-  grid-template-columns: 300px;
-  grid-gap: 15px;
-  justify-content: center;
+.settings-flex {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: space-between;
 }
 
 .button {
   background-color: #e0e0e0;
+}
+
+.heading {
+  margin-bottom: 5px;
+  border-bottom: 1px solid grey;
+}
+
+.box {
+  background-color: white;
+  border-radius: 1px;
+  margin-top: 10px;
+  padding: 10px;
+  box-shadow: 0 0 1px black;
 }

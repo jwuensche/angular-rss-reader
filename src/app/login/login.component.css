@@ -5,7 +5,7 @@
 
 .floating-box {
   height: 250px;
-  width: 400px;
+  width: auto;
   margin: auto;
   margin-top: 150px;
   background-color: white;

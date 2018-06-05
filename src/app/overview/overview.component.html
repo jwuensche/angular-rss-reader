@@ -4,26 +4,28 @@
   		<h1>{{ feed.feed.title }}</h1>
 	</span> -->
 	<ul class="flex-container">
-		<li class="flex-item" routerLink="/user/details/{{ feedName }}/{{ i }}" *ngFor="let article of (feed | articles); let i = index" [attr.data-index]="i" queryParamsHandling="preserve">
+		<li class="flex-item" style="grid-row-start: 1; grid-column-start: 1;" routerLink="/user/details/{{ feedName }}/{{ i }}" *ngFor="let article of (feed | articles); let i = index" [attr.data-index]="i" queryParamsHandling="preserve">
 			<ul class="flex-container-interior">
 				<div class="flex-item-interior">
 					<h2>{{ article.Title }}</h2>
-					<h3>by <fa name="user-o"></fa> {{ article.Author.Name }} <fa name="clock-o"></fa> {{ article.PublishedParsed | date }} </h3>
+					<h3 style="display: flex;">
+						by <mat-icon class="small">person</mat-icon> {{ article.Author.Name }} <mat-icon class="small">schedule</mat-icon> {{ article.PublishedParsed | date }}
+					</h3>
 					<div class="content">
 						{{ (article.Description | striptext) }}<br><br>
             <fa name="link"></fa>  <a href="{{ article.Link }}">Visit the page</a>
 					</div>
-					<ul class="flex-container-cat">
-						<a class="flex-item-cat" routerLink="/user/tag/{{ feedName }}/{{ category }}" *ngFor="let category of article.Categories | slice:0:5" queryParamsHandling="preserve">
-							{{ category }}
-						</a>
-					</ul>
 				</div>
-				<div class="flex-item-interior">
+				<div class="flex-item-interior" style="grid-row-start: 1; grid-column-start: 2;">
           <div class="thumbnail">
           <img src="{{ images[i] }}">
           </div>
 				</div>
+				<ul class="flex-container-cat" style="grid-row-start: 2; grid-column-start: 1; grid-column-end: span 2;">
+					<a class="flex-item-cat" routerLink="/user/tag/{{ feedName }}/{{ category }}" *ngFor="let category of article.Categories | slice:0:5" queryParamsHandling="preserve">
+						{{ category }}
+					</a>
+				</ul>
 			</ul>
 		</li>
 	</ul>
