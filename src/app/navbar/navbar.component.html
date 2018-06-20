@@ -21,7 +21,7 @@
         <button mat-menu-item routerLink="/user/overview/{{ item.Name }}" queryParamsHandling="preserve">{{ item.Name }}</button>
       </div>
     </mat-menu>
-    <div style="align-self: center; color: #ffffff;">
+    <div style="align-self: center; color: #ffffff; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
       {{ feedName }}
     </div>
   </ng-template>

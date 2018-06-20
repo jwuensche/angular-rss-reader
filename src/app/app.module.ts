@@ -16,7 +16,6 @@ import { TagComponent } from './tag/tag.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { SettingsComponent } from './settings/settings.component';
-import { AngularFontAwesomeModule} from "angular-font-awesome";
 import { StorageService } from "./storage.service";
 import { LoginComponent } from './login/login.component';
 import {AuthService} from "./auth.service";
@@ -24,8 +23,9 @@ import {AuthGuard} from './auth-guard.service';
 import {MatProgressSpinnerModule, MatSnackBarModule, MatButtonModule, MatCheckboxModule, MatChipsModule , MatInputModule, MatIconModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {MatMenuModule} from '@angular/material/menu';
+import {MatMenuModule } from '@angular/material/menu';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { CookieService } from 'ngx-cookie-service';
 
 declare var Hammer: any;
 
@@ -64,13 +64,13 @@ export class MyHammerConfig extends HammerGestureConfig  {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: MyHammerConfig ,
     },
-    MessageService
+    MessageService,
+    CookieService
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AngularFontAwesomeModule,
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,

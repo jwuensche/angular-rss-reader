@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private storageService: StorageService,
-    private feedService: FeedService
+    public feedService: FeedService
   ) { }
 
   ngOnInit() {

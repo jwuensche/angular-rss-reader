@@ -4,17 +4,12 @@
 body {
 	margin: 0 !important;
 	padding: 0 !important;
-	background: #E7E8E5;
+	background: #ffffff;
 }
 html * {
 	font-family: 'Roboto', sans-serif;
 	margin: 0;
 	padding: 0;
-}
-
-a {
-  color: white;
-  font-weight: bold;
 }
 
 .flex-container {
@@ -57,6 +52,7 @@ a {
   flex-direction: row;
 	flex-wrap: wrap;
   align-items: baseline;
+	padding: 10px;
 
   display: -webkit-box;
   display: -moz-box;
@@ -68,16 +64,19 @@ a {
 }
 
 .flex-item-cat {
-  background: #404B4B;
+  background: #fefefe;
   padding: 10px;
   margin: 5px;
   opacity: 0.7;
   border-radius: 5px;
+	border-color: #0b0b0b;
+	border-width: 1px;
+	border-style: solid;
+	color: black;
 
   font-size: small;
   box-shadow: 0 0 2px #404B4B;
   flex-basis: auto;
-  color: white;
   text-decoration: none;
   position: relative;
   z-index: 100;
@@ -88,23 +87,25 @@ a {
   flex-grow: 1;
 
   flex-basis: auto;
-  color: white;
   text-align: right;
 }
 
 .flex-item {
-  background: #2BA84A;
-  padding: 10px;
-  flex-grow: 1;
-  flex: auto;
-  margin-top: 10px;
+	background: #f7f7f7;
+	padding: 10px;
+	flex-grow: 1;
+	flex: auto;
+	margin-top: 10px;
+	box-shadow: 0 3px 7px #b3b3b3;
+	flex-basis: auto;
+	color: black;
+	border-width: 2px;
+	border-top-width: 1px;
+	border-style: solid;
+	border-color: #0b0b0b;
+	position: relative;
+	z-index: 10;
 
-  box-shadow: 0 0 4px #2BA84A;
-
-  flex-basis: auto;
-  color: white;
-  position: relative;
-  z-index: 10;
 }
 .flex-item-cat:hover {
   filter: brightness(110%);
@@ -137,9 +138,13 @@ h3 {
   font-size: small;
   font-weight: normal;
   padding: 0px;
+	padding-bottom: 10px;
   margin-top: 0;
   margin-left: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+	border-bottom-style: solid;
+	border-color: #0b0b0b;
+	border-width: 1px;
 }
 
 .content {
@@ -149,6 +154,8 @@ h3 {
 
 a {
   text-decoration: none;
+	font-weight: bold;
+	color: black;
 }
 
 @media all and (max-width: 600px){

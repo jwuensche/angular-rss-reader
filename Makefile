@@ -5,7 +5,7 @@ build:
 	ng build
 
 docker:
-	ng build
+	ng build --aot
 	sudo docker build -t hub-client -f Dockerfile .
 
 run:

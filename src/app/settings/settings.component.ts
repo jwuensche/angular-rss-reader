@@ -15,7 +15,7 @@ export class SettingsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private feedService: FeedService,
+    public feedService: FeedService,
     public storageService: StorageService
   ) { }
 
